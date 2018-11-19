@@ -13,19 +13,19 @@
 				return false;
 			}
 		}
-		public function get_yazilar($slug = FALSE){ 
-			$this->db->order_by('yazilar.yazi_id', 'DESC');
+		public function get_yazilar($yazi_url = FALSE){ 
+			$this->db->order_by('yazilar.yazi_sira', 'asc');
 			$this->db->join('kategoriler', 'kategoriler.kategori_id = yazilar.kategori_id');
-			if($slug === FALSE){
+			if($yazi_url === FALSE){
 				$query = $this->db->get('yazilar');
 				return $query->result_array();
 			}
-			$query = $this->db->get_where('yazilar', array('yazi_url' => $slug));
+			$query = $this->db->get_where('yazilar', array('yazi_url' => $yazi_url));
 			return $query->row_array();
 		}
 		public function get_kategoriler($id = FALSE){
 			if($id === FALSE){
-				$this->db->order_by('kategori_baslik',"DESC");
+				$this->db->order_by('kategori_sira',"asc");
 				$query = $this->db->get('kategoriler');
 				return $query->result_array();
 			}
@@ -105,6 +105,30 @@
 			);
 			$this->db->where('email',$email);
 			return $this->db->update('users', $data);
+		}
+		public function yazilar_sirala(){			
+			$veriler = $this->input->post('sirala');
+			$toplam_veriler = count($this->input->post('sirala'));
+			for($veri = 0; $veri < $toplam_veriler; $veri++ ){
+				$data = array(
+					'yazi_sira' =>"$veri"
+				);
+				$this->db->where('yazi_id', $veriler[$veri]);
+				$this->db->update('yazilar', $data);
+			}
+			$this->session->set_flashdata('mesaj', 'Yazılar Sıralandı');
+		}
+		public function kategoriler_sirala(){			
+			$veriler = $this->input->post('sirala');
+			$toplam_veriler = count($this->input->post('sirala'));
+			for($veri = 0; $veri < $toplam_veriler; $veri++ ){
+				$data = array(
+					'kategori_sira' =>"$veri"
+				);
+				$this->db->where('kategori_id', $veriler[$veri]);
+				$this->db->update('kategoriler', $data);
+			}
+			$this->session->set_flashdata('mesaj', 'Kategoriler Sıralandı');
 		}
 		public function self_url($title){
 			$search = array(" ","ö","ü","ı","ğ","ç","ş","/","?","&","'",",","A","B","C","Ç","D","E","F","G","Ğ","H","I","İ","J","K","L","M","N","O","Ö","P","R","S","Ş","T","U","Ü","V","Y","Z","Q","X");

@@ -7,7 +7,7 @@
 			if($limit){
 				$this->db->limit($limit, $offset);
 			}
-			$this->db->order_by('yazilar.yazi_id', 'asc');
+			$this->db->order_by('yazilar.yazi_sira', 'asc');
 			$this->db->join('kategoriler', 'kategoriler.kategori_id = yazilar.kategori_id');
 			if($slug === FALSE){
 				$query = $this->db->get('yazilar');

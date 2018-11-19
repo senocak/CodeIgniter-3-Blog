@@ -190,4 +190,10 @@
 			$this->session->sess_destroy();
 			redirect('admin/login');
 		}
+		public function yazilar_sirala(){
+			$this->admin_model->yazilar_sirala();
+		}
+		public function kategoriler_sirala(){
+			$this->admin_model->kategoriler_sirala();
+		}
 	}

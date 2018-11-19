@@ -6,7 +6,7 @@
 	
 		<textarea id="editor1" class="ckeditor" name="yazi_icerik" placeholder="Yazı Açıklaması"></textarea>
 	
-		<select name="kategori_id" class="w3-input w3-border w3-margin-bottom">
+		<select name="kategori_id" class="w3-select w3-border w3-margin-bottom">
 			<?php foreach($kategoriler as $kategori): ?>
 				<option value="<?php echo $kategori['kategori_id']; ?>"><?php echo $kategori['kategori_baslik']; ?></option>
 			<?php endforeach; ?>

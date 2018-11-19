@@ -11,7 +11,7 @@
 				</div>
 				<div class="w3-container w3-white">
 					<p><b><?php echo $post['yazi_baslik']; ?></b></p>
-					<p style="text-align: justify;"><?php echo word_limiter(strip_tags($post["yazi_icerik"]),8);?><br>
+					<p style="text-align: justify;"><?php echo word_limiter(strip_tags($post["yazi_icerik"]),10);?><br>
 					<?php 
 						$dizi = explode (",",$post["yazi_etiketler"]);
 						for($i=0;$i<count($dizi);$i++){

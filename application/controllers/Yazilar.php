@@ -9,7 +9,7 @@
 			$config['attributes'] = array('class' => 'w3-button w3-black w3-padding-large w3-margin-bottom');
 			$config['cur_tag_open'] = '<a class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">';
 			$config['cur_tag_close'] = '</a>';
-			$config['use_page_numbers'] = TRUE;  
+			//$config['use_page_numbers'] = TRUE;  
 			// Init Pagination
 			$this->pagination->initialize($config);
 			$data['title']="Son Yazılar";

@@ -1,5 +1,6 @@
 <?php $this->view('admin/header'); ?>
 	<br>
+	<style type="text/css">.sortable { cursor: move; }</style>
 	<?php echo validation_errors(); ?>
 	<?php echo form_open_multipart('admin/kategoriler'); ?>
 		<input type="text" class="w3-input" name="kategori_baslik" placeholder="Kategori İsmi" required autofocus>
@@ -8,13 +9,13 @@
 	<?php echo form_close(); ?>
 	<table class="w3-table-all">
 		<thead><tr><th scope="col">#</th><th scope="col">Resim</th><th scope="col">Başlık</th><th scope="col">İşlemler</th></tr></thead>
-		<tbody>
+		<tbody id="sortable">
 			<?php 
 			$i=0;
 				foreach($kategoriler as $kategori){
 					$i++;
-					echo "<tr>
-							<th>$i</th>
+					echo "<tr id='".$kategori['kategori_id']."'>
+							<th class='sortable'>$i</th>
 							<td><img src='".site_url()."assets/images/kategoriler/".$kategori['kategori_resim']."' width='100px'></td>
 							<td>".$kategori['kategori_baslik']."</td>
 							<td>
@@ -26,4 +27,26 @@
 			?>
 		</tbody>
 	</table> 
+	<script type="text/javascript"> 
+		$(function() {
+			$( "#sortable" ).sortable({
+				revert: true,
+				handle: ".sortable",
+				stop: function (event, ui) {
+					var data = $(this).sortable('serialize');  
+					$.ajax({
+						type: "POST",
+						dataType: "json",
+						data:	{
+									'sirala': $( "#sortable" ).sortable('toArray'),
+								},
+						url: '<?php echo site_url('/admin/kategoriler_sirala'); ?>'
+					});	
+					
+					location.reload();
+				}
+			});
+			$( "#sortable" ).disableSelection();	                      		
+		});	                      	
+	</script>
 <?php $this->view('admin/footer'); ?>
