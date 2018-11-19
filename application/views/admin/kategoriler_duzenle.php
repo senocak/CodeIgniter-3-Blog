@@ -1,18 +1,15 @@
-<?php $this->view('templates/header'); ?>
+<?php $this->view('admin/header'); ?>
 	<br>
 	<?php echo validation_errors(); ?>
 	<?php echo form_open_multipart('admin/kategoriler_duzenle/'.$kategori["kategori_id"]); ?>
-		<div class="form-group">
             <input type="hidden" name="kategori_id" value="<?php echo $kategori["kategori_id"]; ?>">
-		    <input type="text" class="form-control" name="kategori_baslik" placeholder="Kategori İsmi" required autofocus value="<?php echo $kategori["kategori_baslik"]; ?>">
-		</div>
-		<div class="form-group">
+		    <input type="text" class="w3-input" name="kategori_baslik" placeholder="Kategori İsmi" required autofocus value="<?php echo $kategori["kategori_baslik"]; ?>">
             <img src='<?php echo site_url()."assets/images/kategoriler/".$kategori['kategori_resim']; ?>' width='200px'>
-			<input type="file" name="userfile" class="form-control">
+			<input type="file" name="userfile" class="w3-input">
 		</div>
-		<button type="submit" class="btn btn-primary btn-block btn-lg">Güncelle</button>
+		<button type="submit" class="w3-button w3-block w3-green">Güncelle</button>
 	<?php echo form_close(); ?>
-	<table class="table table-sm">
+	<table class="w3-table-all">
 		<thead><tr><th scope="col">#</th><th scope="col">Resim</th><th scope="col">Başlık</th><th scope="col">İşlemler</th></tr></thead>
 		<tbody>
 			<?php 
@@ -32,4 +29,4 @@
 			?>
 		</tbody>
 	</table> 
-<?php $this->view('templates/footer'); ?>
+<?php $this->view('admin/footer'); ?>

@@ -1,20 +1,16 @@
-<?php $this->view('templates/header'); ?>
+<?php $this->view('admin/header'); ?>
 	<br>
 	<?php echo validation_errors(); ?>
 	<?php echo form_open('admin/yazilar_ekle'); ?>
-		<div class="form-group">
-			<input type="text" class="form-control" name="yazi_baslik" placeholder="Yazı Başlığı">
-		</div>
-		<div class="form-group">
-			<textarea id="editor1" class="ckeditor" name="yazi_icerik" placeholder="Yazı Açıklaması"></textarea>
-		</div>
-		<div class="form-group">
-			<select name="kategori_id" class="form-control">
-				<?php foreach($kategoriler as $kategori): ?>
-					<option value="<?php echo $kategori['kategori_id']; ?>"><?php echo $kategori['kategori_baslik']; ?></option>
-				<?php endforeach; ?>
-			</select>
-		</div>
-		<button type="submit" class="btn btn-primary btn-lg btn-block">Ekle</button>
+		<input type="text" class="w3-input w3-border w3-margin-bottom" name="yazi_baslik" placeholder="Yazı Başlığı">
+	
+		<textarea id="editor1" class="ckeditor" name="yazi_icerik" placeholder="Yazı Açıklaması"></textarea>
+	
+		<select name="kategori_id" class="w3-input w3-border w3-margin-bottom">
+			<?php foreach($kategoriler as $kategori): ?>
+				<option value="<?php echo $kategori['kategori_id']; ?>"><?php echo $kategori['kategori_baslik']; ?></option>
+			<?php endforeach; ?>
+		</select>
+		<button type="submit" class="w3-button w3-block w3-green">Ekle</button>
 	<?php echo form_close(); ?>
-<?php $this->view('templates/footer'); ?>
+<?php $this->view('admin/footer'); ?>

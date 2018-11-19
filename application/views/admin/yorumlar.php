@@ -1,6 +1,6 @@
-<?php $this->view('templates/header'); ?>
-	<br><h1>Yorumlar</h1>
-	<table class="table table-sm">
+<?php $this->view('admin/header'); ?>
+	<br><br>
+	<table class="w3-table-all">
 		<thead><tr><th scope="col">#</th><th scope="col">İsim</th><th scope="col">Yorum</th><th scope="col">Yazı Başlığı</th><th scope="col">İşlemler</th></tr></thead>
 		<tbody>
 			<?php 
@@ -28,4 +28,4 @@
 			?>
 		</tbody>
 	</table> 
-<?php $this->view('templates/footer'); ?>
+<?php $this->view('admin/footer'); ?>

@@ -21,10 +21,20 @@
 			$query = $this->db->get('kategoriler');
 			return $query->result_array();
 		}
+		public function get_yorumlar(){
+			$this->db->order_by('yorum_id');
+			$this->db->join('yazilar', 'yorumlar.yazi_id = yazilar.yazi_id');
+			$query = $this->db->get('yorumlar');
+			return $query->result_array();
+		}		
 		public function get_posts_by_category($category_id){
 			$this->db->order_by('yazilar.yazi_id', 'DESC');
 			$this->db->join('kategoriler', 'kategoriler.kategori_id = yazilar.kategori_id');
 			$query = $this->db->get_where('yazilar', array('kategori_id' => $category_id));
 			return $query->result_array();
+		}
+		public function get_yorumlar_toplam($id){
+			$query = $this->db->query("select * from yorumlar where yazi_id=$id")->num_rows();
+			return $query;
 		}
 	}

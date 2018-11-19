@@ -1,22 +1,10 @@
-<?php $this->view('templates/header'); ?>	
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<?php echo form_open('admin/login'); ?>
-					<div class="row">
-						<div class="col-md-12 col-md-offset-12">
-							<h1 class="text-center">Giriş Yap</h1>
-							<div class="form-group">
-								<input type="email" name="email" class="form-control" placeholder="Email" required autofocus>
-							</div>
-							<div class="form-group">
-								<input type="password" name="password" class="form-control" placeholder="Şifre" required autofocus>
-							</div>
-							<button type="submit" class="btn btn-primary btn-block">Login</button>
-						</div>
-					</div>
-				<?php echo form_close(); ?>
-			</div>
-		</div>
+<?php $this->view('admin/header'); ?>	
 	</div>
-<?php $this->view('templates/footer'); ?>
+	<div class="w3-center"><br> 
+		<?php echo form_open('admin/login',["class"=>"w3-container"]); ?> 
+			<h1 class="text-center">Giriş Yap</h1>
+			<input type="email" name="email" class="w3-input w3-border w3-margin-bottom" placeholder="Email" required autofocus>
+			<input type="password" name="password" class="w3-input w3-border w3-margin-bottom" placeholder="Şifre" required autofocus>
+			<button type="submit" class="w3-button w3-block w3-green w3-section w3-padding">Login</button> 
+		<?php echo form_close(); ?> 
+<?php $this->view('admin/footer'); ?>

@@ -8,7 +8,7 @@
 			$this->db->where('password', $password);
 			$result = $this->db->get('users');
 			if($result->num_rows() == 1){
-				return $result->row(0)->id;
+				return $result->row(0);
 			} else {
 				return false;
 			}
@@ -92,10 +92,19 @@
 			return $this->db->insert('yazilar', $data);
 		}
 		public function get_yorumlar(){ 
-			$this->db->order_by('yorum.yorum_id', 'DESC');
-			$this->db->join('yazilar', 'yorum.yazi_id = yazilar.yazi_id');
-			$query = $this->db->get('yorum');
+			$this->db->order_by('yorumlar.yorum_id', 'DESC');
+			$this->db->join('yazilar', 'yorumlar.yazi_id = yazilar.yazi_id');
+			$query = $this->db->get('yorumlar');
 			return $query->result_array();
+		}
+		public function profil($email){
+			$data = array(
+				'email' => $this->input->post('email'),
+				'password' => md5($this->input->post('password')),
+				'name'=>$this->input->post('name')
+			);
+			$this->db->where('email',$email);
+			return $this->db->update('users', $data);
 		}
 		public function self_url($title){
 			$search = array(" ","ö","ü","ı","ğ","ç","ş","/","?","&","'",",","A","B","C","Ç","D","E","F","G","Ğ","H","I","İ","J","K","L","M","N","O","Ö","P","R","S","Ş","T","U","Ü","V","Y","Z","Q","X");

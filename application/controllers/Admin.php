@@ -13,11 +13,12 @@
 			} else {
 				$email = $this->input->post('email');
 				$password = md5($this->input->post('password'));
-				$user_id = $this->admin_model->login($email, $password);
-				if($user_id){
+				$user = $this->admin_model->login($email, $password);
+				if($user){
 					$user_data = array(
-						'user_id' => $user_id,
-						'email' => $username,
+						'user_id' => $user->id,
+						'email' => $user->email,
+						'name' => $user->name,
 						'logged_in' => true
 					);
 					$this->session->set_userdata($user_data);
@@ -28,14 +29,25 @@
 					redirect('admin/login');
 				}
 			}
-		}
+		} 
 		public function profil(){
-			$data=array();
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
-			}else{
-				$this->load->view('admin/profil', $data);
 			}
+			$data=array();
+			$this->form_validation->set_rules('email', 'Kullanıcı Email', 'required');
+			$this->form_validation->set_rules('name', 'Kullanıcı İsmi', 'required');
+			if($this->form_validation->run() === TRUE){
+				$sifre=$this->input->post('sifre');
+				$sifre2=$this->input->post('sifre2');
+				if($sifre!=$sifre2){
+					$this->session->set_flashdata('mesaj', 'Şifreler Eşleşmiyor'); 
+				}else{
+					$this->admin_model->profil($this->session->userdata('email'));
+					$this->session->set_flashdata('mesaj', 'Profil Güncellendi');
+				}
+			}
+			$this->load->view('admin/profil', $data);
 		}
 		public function yazilar(){
 			$data=array('title'=>"Yazılar");
@@ -173,5 +185,9 @@
 				$data['yorumlar'] = $this->admin_model->get_yorumlar();
 				$this->load->view('admin/yorumlar', $data);
 			}		
+		}
+		public function cikis(){
+			$this->session->sess_destroy();
+			redirect('admin/login');
 		}
 	}

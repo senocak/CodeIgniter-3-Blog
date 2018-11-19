@@ -8,6 +8,10 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 		<script src="//cdn.ckeditor.com/4.11.1/full/ckeditor.js"></script>
 		<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script> 
+		
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/prism.css">  
+		<script src="<?php echo base_url(); ?>assets/js/prism.js"></script> 
+		
 	</head>
 	<style>body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}</style>
 	<body class="w3-light-grey">
@@ -17,9 +21,6 @@
 				<p>
 					<span class="w3-tag">Laravel</span>
 					<span class="w3-tag">Codeigneiter</span>
-					<span class="w3-tag">Appium</span>
-					<span class="w3-tag">Cucumber</span>
-					<span class="w3-tag">Selenium</span>
 				</p>
 			</header>
 			<div class="w3-row">
