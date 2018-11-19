@@ -1,2 +1,3 @@
-<h2><?= $title ?></h2>
-<p>This is ciBlog version 1.0</p>
+<?php $this->view('templates/header'); ?>	
+	About
+<?php $this->view('templates/footer'); ?>

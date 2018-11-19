@@ -1,3 +1,3 @@
 <?php $this->view('templates/header'); ?>	
-	asd
+	Profil
 <?php $this->view('templates/footer'); ?>

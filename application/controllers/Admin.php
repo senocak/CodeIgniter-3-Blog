@@ -5,11 +5,15 @@
 			$this->form_validation->set_rules('email', 'Email', 'required');
 			$this->form_validation->set_rules('password', 'Şifre', 'required');
 			if($this->form_validation->run() === FALSE){
-				$this->load->view('admin/login', $data);
+				if(!$this->session->userdata('logged_in')){
+					$this->load->view('admin/login', $data);
+				}else{
+					redirect('admin/profil');
+				}
 			} else {
 				$email = $this->input->post('email');
 				$password = md5($this->input->post('password'));
-				$user_id = $this->user_model->login($email, $password);
+				$user_id = $this->admin_model->login($email, $password);
 				if($user_id){
 					$user_data = array(
 						'user_id' => $user_id,
@@ -17,10 +21,10 @@
 						'logged_in' => true
 					);
 					$this->session->set_userdata($user_data);
-					$this->session->set_flashdata('user_loggedin', 'Başarılı ile giriş yapıldı');
+					$this->session->set_flashdata('mesaj', 'Başarılı ile giriş yapıldı');
 					redirect('admin/profil');
 				} else {
-					$this->session->set_flashdata('login_failed', 'Giriş Başarısız');
+					$this->session->set_flashdata('mesaj', 'Giriş Başarısız');
 					redirect('admin/login');
 				}
 			}
@@ -30,7 +34,7 @@
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
 			}else{
-				$this->load->view('admin/login', $data);
+				$this->load->view('admin/profil', $data);
 			}
 		}
 		public function yazilar(){
@@ -42,71 +46,132 @@
 				$this->load->view('admin/yazilar', $data);
 			}		
 		}
+		public function yazilar_ekle(){
+			if(!$this->session->userdata('logged_in')){
+				redirect('admin/login');
+			}
+			$data['kategoriler'] = $this->admin_model->get_kategoriler();
+			$this->form_validation->set_rules('yazi_baslik', 'Başlık', 'required');
+			$this->form_validation->set_rules('yazi_icerik', 'İçerik', 'required');
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('admin/yazilar_ekle', $data);
+			} else {
+				$this->admin_model->yazilar_ekle();
+				$this->session->set_flashdata('mesaj', 'Yazı Oluşturuldu');
+				redirect('admin/yazilar');
+			}
+		}
+		public function yazilar_sil($id){
+			if(!$this->session->userdata('logged_in')){
+				redirect('admin/login');
+			}
+			$this->admin_model->yazilar_sil($id);
+			$this->session->set_flashdata('mesaj', 'Yazı Silindi');
+			redirect('admin/yazilar');
+		}
+		public function yazilar_duzenle($id){
+			if(!$this->session->userdata('logged_in')){
+				redirect('admin/login');
+			}
+			$slug = $this->db->get_where('yazilar', array('yazi_id' => $id))->row()->yazi_url;
+			$data['post'] = $this->admin_model->get_yazilar($slug);
+			$data['categories'] = $this->admin_model->get_kategoriler();
+			if(empty($data['post'])){
+				show_404();
+			}
+			$this->load->view('admin/yazilar_duzenle', $data);
+		}
+		public function yazilar_guncelle_post(){
+			if(!$this->session->userdata('logged_in')){
+				redirect('admin/login');
+			}
+			$this->admin_model->yazilar_duzenle();
+			$this->session->set_flashdata('mesaj', 'Yazı Güncellendi');
+			redirect('admin/yazilar');
+		}
 		public function logout(){
 			$this->session->unset_userdata('logged_in');
 			$this->session->unset_userdata('user_id');
 			$this->session->unset_userdata('username');
-			$this->session->set_flashdata('user_loggedout', 'Çıkış yapıldı');
-			redirect('users/login');
+			$this->session->set_flashdata('mesaj', 'Çıkış yapıldı');
+			redirect('admin/login');
 		}
-		public function post_create(){
+		public function kategoriler(){
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
 			}
-			$data['title'] = 'Yazı Oluştur';
-			$data['categories'] = $this->post_model->get_categories();
-			$this->form_validation->set_rules('title', 'Başlık', 'required');
-			$this->form_validation->set_rules('body', 'İçerik', 'required');
+			$data['kategoriler'] = $this->admin_model->get_kategoriler();
+			$this->form_validation->set_rules('kategori_baslik', 'Kategori Başlık', 'required');
 			if($this->form_validation->run() === FALSE){
-				$this->load->view('posts/create', $data);
-			} else {
-				// Upload Image
-				$config['upload_path'] = './assets/images/posts';
+				$this->load->view('admin/kategoriler', $data);
+			}else{
+				$config['upload_path'] = './assets/images/kategoriler';
 				$config['allowed_types'] = 'gif|jpg|png';
-				$config['max_size'] = '2048';
-				$config['max_width'] = '2000';
-				$config['max_height'] = '2000';
-
+				$config['max_size'] = '4048';
+				$config['max_width'] = '4000';
+				$config['max_height'] = '4000';
 				$this->load->library('upload', $config);
-
 				if(!$this->upload->do_upload()){
 					$errors = array('error' => $this->upload->display_errors());
-					$post_image = 'noimage.jpg';
-				} else {
+					$post_image = 'no-image.png';
+				}else{
 					$data = array('upload_data' => $this->upload->data());
 					$post_image = $_FILES['userfile']['name'];
 				}
-				$this->post_model->create_post($post_image);
-				$this->session->set_flashdata('post_created', 'Yazı Oluşturuldu');
-				redirect('admin/posts');
+				$this->admin_model->kategori_ekle($post_image);
+				$this->session->set_flashdata('mesaj', 'Kategori Oluşturuldu');
+				redirect('admin/kategoriler');
 			}
 		}
-		public function post_delete($id){
+		public function kategoriler_duzenle($id){
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
 			}
-			$this->post_model->delete_post($id);
-			$this->session->set_flashdata('post_deleted', 'Yazı Silindi');
-			redirect('admin/posts');
+			$data['kategoriler'] = $this->admin_model->get_kategoriler();
+			$data['kategori'] = $this->admin_model->get_kategoriler($id);
+			$this->form_validation->set_rules('kategori_baslik', 'Kategori İsmi', 'required');
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('admin/kategoriler_duzenle', $data);
+			}else{
+				if($_FILES['userfile']["name"]!=""){
+					$config['upload_path'] = './assets/images/kategoriler';
+					$config['allowed_types'] = 'gif|jpg|png';
+					$config['max_size'] = '4048';
+					$config['max_width'] = '4000';
+					$config['max_height'] = '4000';
+					$this->load->library('upload', $config);
+					if(!$this->upload->do_upload()){
+						$errors = array('error' => $this->upload->display_errors());
+						$post_image = 'no-image.png';
+					}else{
+						$data = array('upload_data' => $this->upload->data());
+						$post_image = $_FILES['userfile']['name'];
+					}
+					$this->admin_model->kategoriler_duzenle($post_image);
+					$this->session->set_flashdata('mesaj', 'Kategori Güncellendi');
+					redirect('admin/kategoriler');
+				}else{
+					$this->admin_model->kategoriler_duzenle($post_image);
+					$this->session->set_flashdata('mesaj', 'Kategori Güncellendi');
+					redirect('admin/kategoriler');
+				}
+			}
 		}
-		public function post_edit($slug){
+		public function kategoriler_sil($id){
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
 			}
-			$data['post'] = $this->post_model->get_posts($slug);
-			$data['categories'] = $this->post_model->get_categories();
-			if(empty($data['post'])){
-				show_404();
-			}
-			$data['title'] = 'Yazıyı Güncelle';
-			$this->load->view('admin/post_edit', $data);
+			$this->admin_model->kategoriler_sil($id);
+			$this->session->set_flashdata('mesaj', 'Kategori Silindi');
+			redirect('admin/kategoriler');
 		}
-		public function post_update(){
+		public function yorumlar(){
+			$data=array('title'=>"Yorumlar");
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
-			}
-			$this->post_model->update_post();
-			$this->session->set_flashdata('post_updated', 'Yazı Güncellendi');
-			redirect('admin/posts');
+			}else{
+				$data['yorumlar'] = $this->admin_model->get_yorumlar();
+				$this->load->view('admin/yorumlar', $data);
+			}		
 		}
 	}

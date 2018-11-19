@@ -15,7 +15,6 @@
 			$data = array(
 				'name' => $this->input->post('name'),
 				'url' => $slug,
-				'user_id' => $this->session->userdata('user_id'),
 				'resim' => $post_image
 			);
 			return $this->db->insert('categories', $data);
