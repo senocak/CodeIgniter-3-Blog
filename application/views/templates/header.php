@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>W3.CSS Template</title>
+		<title>Anıl Şenocak</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-
 		<script src="//cdn.ckeditor.com/4.11.1/full/ckeditor.js"></script>
 		<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script> 
 	</head>
@@ -14,8 +13,14 @@
 	<body class="w3-light-grey">
 		<div class="w3-content" style="max-width:1400px">
 			<header class="w3-container w3-center w3-padding-32"> 
-				<h1><b>MY BLOG</b></h1>
-				<p>Welcome to the blog of <span class="w3-tag">unknown</span></p>
+				<h1><b><a href='<?php echo base_url(); ?>'>Anıl Şenocak</a></b></h1>
+				<p>
+					<span class="w3-tag">Laravel</span>
+					<span class="w3-tag">Codeigneiter</span>
+					<span class="w3-tag">Appium</span>
+					<span class="w3-tag">Cucumber</span>
+					<span class="w3-tag">Selenium</span>
+				</p>
 			</header>
 			<div class="w3-row">
 				<div class="w3-col l8 s12">

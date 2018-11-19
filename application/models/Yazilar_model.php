@@ -7,7 +7,7 @@
 			if($limit){
 				$this->db->limit($limit, $offset);
 			}
-			$this->db->order_by('yazilar.yazi_id', 'DESC');
+			$this->db->order_by('yazilar.yazi_id', 'asc');
 			$this->db->join('kategoriler', 'kategoriler.kategori_id = yazilar.kategori_id');
 			if($slug === FALSE){
 				$query = $this->db->get('yazilar');
@@ -23,8 +23,8 @@
 		}
 		public function get_posts_by_category($category_id){
 			$this->db->order_by('yazilar.yazi_id', 'DESC');
-			$this->db->join('categories', 'kategoriler.kategori_id = yazilar.kategori_id');
-				$query = $this->db->get_where('yazilar', array('kategori_id' => $category_id));
+			$this->db->join('kategoriler', 'kategoriler.kategori_id = yazilar.kategori_id');
+			$query = $this->db->get_where('yazilar', array('kategori_id' => $category_id));
 			return $query->result_array();
 		}
 	}

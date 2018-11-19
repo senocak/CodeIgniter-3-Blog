@@ -4,9 +4,9 @@
 			// Pagination Config	
 			$config['base_url'] = base_url() . 'yazilar/index/';
 			$config['total_rows'] = $this->db->count_all('yazilar');
-			$config['per_page'] = 3;
+			$config['per_page'] = 9;
 			$config['uri_segment'] = 3;
-			$config['attributes'] = array('class' => 'pagination-link');
+			$config['attributes'] = array('class' => 'w3-button w3-black w3-padding-large w3-margin-bottom');
 			// Init Pagination
 			$this->pagination->initialize($config);
 			$data['title']="Son Yazılar";
