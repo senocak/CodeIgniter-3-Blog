@@ -91,12 +91,28 @@
 			);
 			return $this->db->insert('yazilar', $data);
 		}
-		public function get_yorumlar(){ 
-			$this->db->order_by('yorumlar.yorum_id', 'DESC');
-			$this->db->join('yazilar', 'yorumlar.yazi_id = yazilar.yazi_id');
-			$query = $this->db->get('yorumlar');
-			return $query->result_array();
+		public function get_yorumlar($yorum_id=FALSE){
+			if($yorum_id === FALSE){
+				$this->db->order_by('yorumlar.yorum_id', 'DESC');
+				$this->db->join('yazilar', 'yorumlar.yazi_id = yazilar.yazi_id');
+				$query = $this->db->get('yorumlar');
+				return $query->result_array();
+			}
+			$query = $this->db->get_where('yorumlar', array('yorum_id' => $yorum_id));
+			return $query->row_array();
 		}
+		public function get_yorumlar_aktif($yorum_id,$aktif){
+			$data = array(
+				'yorum_aktif' => $aktif
+			);
+			$this->db->where('yorum_id',$yorum_id);
+			return $this->db->update('yorumlar', $data);
+		}
+		public function yorumlar_sil($yorum_id){
+			$this->db->where('yorum_id', $yorum_id);
+			$this->db->delete('yorumlar');
+			return true;
+		}		
 		public function profil($email){
 			$data = array(
 				'email' => $this->input->post('email'),

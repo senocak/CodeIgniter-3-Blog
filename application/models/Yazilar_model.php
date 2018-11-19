@@ -24,7 +24,7 @@
 		public function get_yorumlar(){
 			$this->db->order_by('yorum_id');
 			$this->db->join('yazilar', 'yorumlar.yazi_id = yazilar.yazi_id');
-			$query = $this->db->get('yorumlar');
+			$query = $this->db->get_where('yorumlar',array("yorum_aktif"=>"1"));
 			return $query->result_array();
 		}		
 		public function get_posts_by_category($category_id){

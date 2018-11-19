@@ -101,13 +101,6 @@
 			$this->session->set_flashdata('mesaj', 'Yazı Güncellendi');
 			redirect('admin/yazilar');
 		}
-		public function logout(){
-			$this->session->unset_userdata('logged_in');
-			$this->session->unset_userdata('user_id');
-			$this->session->unset_userdata('username');
-			$this->session->set_flashdata('mesaj', 'Çıkış yapıldı');
-			redirect('admin/login');
-		}
 		public function kategoriler(){
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
@@ -185,9 +178,26 @@
 				$data['yorumlar'] = $this->admin_model->get_yorumlar();
 				$this->load->view('admin/yorumlar', $data);
 			}		
+		} 
+		public function yorumlar_aktif($yorum_id){
+			$yorum_aktif=$this->admin_model->get_yorumlar($yorum_id)["yorum_aktif"];
+			if($yorum_aktif==1){
+				$this->admin_model->get_yorumlar_aktif($yorum_id,"0");
+				$this->session->set_flashdata('mesaj', 'Yorum Gizlendi');
+			}else{
+				$this->admin_model->get_yorumlar_aktif($yorum_id,"1");
+				$this->session->set_flashdata('mesaj', 'Yorum Gösterildi');
+			}
+			redirect('admin/yorumlar');
+		}
+		public function yorumlar_sil($yorum_id){
+			$this->admin_model->yorumlar_sil($yorum_id);
+			$this->session->set_flashdata('mesaj', 'Yorum Silindi');
+			redirect('admin/yorumlar');
 		}
 		public function cikis(){
 			$this->session->sess_destroy();
+			$this->session->set_flashdata('mesaj', 'Çıkış yapıldı');
 			redirect('admin/login');
 		}
 		public function yazilar_sirala(){
