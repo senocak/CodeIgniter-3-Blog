@@ -1,7 +1,7 @@
 <?php $this->view('admin/header'); ?>
 	<style type="text/css">.sortable { cursor: move; }</style>
-	<br><a href="<?php echo site_url('/admin/yazilar_ekle'); ?>" class="w3-button w3-block w3-black">Ekle</a>
-	<table class="w3-table-all">
+	<a href="<?php echo site_url('/admin/yazilar_ekle'); ?>" class="w3-button w3-block w3-dark-grey">Ekle</a>
+	<table class="w3-table-all  w3-card-4">
 		<thead><tr><th scope="col">#</th><th scope="col">Başlık</th><th scope="col">Tarih</th><th scope="col">Kategori</th><th scope="col">Etiketler</th><th scope="col">İşlemler</th></tr></thead>
 		<tbody id="sortable">
 			<?php 
@@ -11,8 +11,8 @@
 					
 					$etiketler="";
 					$dizi = explode (",",$yazi["yazi_etiketler"]);
-					for($i=0;$i<count($dizi);$i++){
-						$etiketler=$etiketler."<span class='w3-tag'>$dizi[$i]</span> ";
+					for($etiketler_i=0;$etiketler_i<count($dizi);$etiketler_i++){
+						$etiketler=$etiketler."<span class='w3-tag'>$dizi[$etiketler_i]</span> ";
 					}
 					echo "<tr id='".$yazi['yazi_id']."'>
 							<th class='sortable'>$i</th>

@@ -7,7 +7,7 @@
 		<input type="file" name="userfile" class="w3-input" required autofocus>
 		<button type="submit" class="w3-button w3-block w3-green">Ekle</button>
 	<?php echo form_close(); ?>
-	<table class="w3-table-all">
+	<table class="w3-table-all w3-card-4">
 		<thead><tr><th scope="col">#</th><th scope="col">Resim</th><th scope="col">Başlık</th><th scope="col">İşlemler</th></tr></thead>
 		<tbody id="sortable">
 			<?php 

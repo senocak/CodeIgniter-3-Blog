@@ -46,9 +46,6 @@
 	        <br><br>
             <?php 
                 if($this->session->flashdata('mesaj')){
-                    echo '<div class="w3-panel w3-red">
-                            <h3>Dikkat!</h3>
-                            <p>'.$this->session->flashdata('mesaj').'</p>
-                        </div>';
+                    echo '<div class="w3-panel w3-red"><h3>Dikkat!</h3><p>'.$this->session->flashdata('mesaj').'</p></div>';
                 }
             ?>
