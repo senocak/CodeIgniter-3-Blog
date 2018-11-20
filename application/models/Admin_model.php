@@ -77,7 +77,8 @@
 				'yazi_baslik' => $this->input->post('yazi_baslik'),
 				'yazi_url' => $this->self_url($this->input->post('yazi_baslik')),
 				'yazi_icerik' => $this->input->post('yazi_icerik'),
-				'kategori_id' => $this->input->post('kategori_id')
+				'kategori_id' => $this->input->post('kategori_id'),
+				'yazi_etiketler'=>$this->input->post('yazi_etiketler')
 			);
 			$this->db->where('yazi_id', $this->input->post('id'));
 			return $this->db->update('yazilar', $data);

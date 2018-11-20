@@ -4,7 +4,7 @@
 		<title>Anıl Şenocak</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/w3.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 		<!--<script src="//cdn.ckeditor.com/4.11.1/full/ckeditor.js"></script>-->
 		<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script> 
