@@ -23,5 +23,7 @@
 			</div>
 		<?php endforeach; ?> 
 	</div> 
-	<?php echo $this->pagination->create_links(); ?>
+	<div class="w3-container">
+		<?php echo $this->pagination->create_links(); ?>
+	</div>
 <?php $this->view('templates/footer'); ?>
