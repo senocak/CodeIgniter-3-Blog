@@ -16,6 +16,19 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
+
+        <style type="text/css">.sortable { cursor: move; }</style>
+        
+        <script type="text/javascript">
+            function showimagepreview(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {$('#imgview').attr('src', e.target.result);}
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
+        
 	</head>
 	<style>body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}</style>
 	<body class="w3-light-grey">

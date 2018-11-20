@@ -8,7 +8,6 @@
 			$i=0;
 				foreach($yazilar as $yazi){
 					$i++;
-					
 					$etiketler="";
 					$dizi = explode (",",$yazi["yazi_etiketler"]);
 					for($etiketler_i=0;$etiketler_i<count($dizi);$etiketler_i++){

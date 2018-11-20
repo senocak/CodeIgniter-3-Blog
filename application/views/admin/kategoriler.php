@@ -1,10 +1,10 @@
 <?php $this->view('admin/header'); ?>
 	<br>
-	<style type="text/css">.sortable { cursor: move; }</style>
 	<?php echo validation_errors(); ?>
 	<?php echo form_open_multipart('admin/kategoriler'); ?>
 		<input type="text" class="w3-input" name="kategori_baslik" placeholder="Kategori İsmi" required autofocus>
-		<input type="file" name="userfile" class="w3-input" required autofocus>
+		<input type="file" name="userfile" class="w3-input" required autofocus onChange='showimagepreview(this)'>
+		<img src="<?php echo base_url(); ?>assets/images/kategoriler/no-image.png" style="width:10%" id="imgview" >
 		<button type="submit" class="w3-button w3-block w3-green">Ekle</button>
 	<?php echo form_close(); ?>
 	<table class="w3-table-all w3-card-4">
