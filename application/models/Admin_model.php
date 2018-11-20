@@ -83,6 +83,13 @@
 			$this->db->where('yazi_id', $this->input->post('id'));
 			return $this->db->update('yazilar', $data);
 		}
+		public function yazilar_onecikar($id,$degisken){
+			$data = array(
+				'yazi_onecikan'=>$degisken
+			);
+			$this->db->where('yazi_id', $id);
+			return $this->db->update('yazilar', $data);
+		}
 		public function yazilar_ekle(){
 			$data = array(
 				'yazi_baslik' => $this->input->post('yazi_baslik'),

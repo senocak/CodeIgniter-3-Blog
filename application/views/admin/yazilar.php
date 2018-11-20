@@ -13,6 +13,15 @@
 					for($etiketler_i=0;$etiketler_i<count($dizi);$etiketler_i++){
 						$etiketler=$etiketler."<span class='w3-tag'>$dizi[$etiketler_i]</span> ";
 					}
+					$onecikan="";
+					$style="";
+					if($yazi["yazi_onecikan"]=="0"){
+						$onecikan="Öne Çıkar";
+						$style="dark-gray";
+					}else{
+						$onecikan="Sıfırla";
+						$style="gray";
+					}
 					echo "<tr id='".$yazi['yazi_id']."'>
 							<th class='sortable'>$i</th>
 							<td>".$yazi['yazi_baslik']."</td>
@@ -20,8 +29,9 @@
 							<td>".$yazi['kategori_baslik']."</td>
 							<td>$etiketler</td>
 							<td>
-								<a href='".site_url('/admin/yazilar_duzenle/'.$yazi['yazi_id'])."' class='btn btn-primary'>Düzenle</a>
-								<a href='".site_url('/admin/yazilar_sil/'.$yazi['yazi_id'])."' class='btn btn-danger'>Sil</a>
+								<a class='w3-btn w3-teal' href='".site_url('/admin/yazilar_duzenle/'.$yazi['yazi_id'])."' class='btn btn-primary'>Düzenle</a>
+								<a class='w3-btn w3-red' href='".site_url('/admin/yazilar_sil/'.$yazi['yazi_id'])."' class='btn btn-danger'>Sil</a>
+								<a class='w3-btn w3-$style' href='".site_url('/admin/yazilar_onecikar/'.$yazi['yazi_id'])."'>$onecikan</a>
 							</td>
 						</tr>";
 				}

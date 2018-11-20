@@ -101,6 +101,20 @@
 			$this->session->set_flashdata('mesaj', 'Yazı Güncellendi');
 			redirect('admin/yazilar');
 		}
+		public function yazilar_onecikar($id){
+			if(!$this->session->userdata('logged_in')){
+				redirect('admin/login');
+			}
+			$yazilar = $this->db->get_where('yazilar', array('yazi_id' => $id))->row();
+			if($yazilar->yazi_onecikan=="1"){
+				$this->admin_model->yazilar_onecikar($id,"0");
+				$this->session->set_flashdata('mesaj', 'Yazı Öne Çıkarma Kapatıldı');
+			}else{
+				$this->admin_model->yazilar_onecikar($id,"1");
+				$this->session->set_flashdata('mesaj', 'Yazı Öne Çıkarıldı');
+			}
+			redirect('admin/yazilar');
+		}
 		public function kategoriler(){
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
