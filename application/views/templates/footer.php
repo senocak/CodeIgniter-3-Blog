@@ -1,10 +1,14 @@
                 </div>
                 <div class="w3-col l4">
                     <div class="w3-card w3-margin w3-margin-top">
-                        <!--<img src="/w3images/avatar_g.jpg" style="width:100%">-->
+                    <img src="<?php echo base_url(); ?>assets/images/bg.gif" style="width:100%">
                         <div class="w3-container w3-white">
-                        <h4><b>Anıl Şenocak</b></h4>
-                        <p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
+                            <h4><b>Anıl Şenocak</b></h4>
+                            <p>Playing Guitar<br>
+                            Reading Books<br>
+                            Riding Motorcycle<br>
+                            Traveling (Austria, Slovenia, Hungary, Italy, Croatia, Bosnia and Herzegovina, Netherlands)<br>
+                            </p>
                         </div>
                     </div>
                     <hr>
@@ -43,6 +47,5 @@
         <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
             <p>Anıl Şenocak | <?php echo date("Y");?></p>
         </footer>
-
     </body>
 </html>
