@@ -16,10 +16,10 @@
 					$onecikan="";
 					$style="";
 					if($yazi["yazi_onecikan"]=="0"){
-						$onecikan="Öne Çıkar";
+						$onecikan="<i class='fa fa-plus'></i>";
 						$style="green";
 					}else{
-						$onecikan="Sıfırla";
+						$onecikan="<i class='fa fa-minus'></i>";
 						$style="khaki";
 					}
 					echo "<tr id='".$yazi['yazi_id']."'>
@@ -29,9 +29,9 @@
 							<td>".$yazi['kategori_baslik']."</td>
 							<td>$etiketler</td>
 							<td>
-								<a class='w3-btn w3-teal' href='".site_url('/admin/yazilar_duzenle/'.$yazi['yazi_id'])."' class='btn btn-primary'>Düzenle</a>
-								<a onclick=\"return confirm('Silmek İstediğinize Emin Misiniz?')\" class='w3-btn w3-red' href='".site_url('/admin/yazilar_sil/'.$yazi['yazi_id'])."' class='btn btn-danger'>Sil</a>
-								<a class='w3-btn w3-$style' href='".site_url('/admin/yazilar_onecikar/'.$yazi['yazi_id'])."'>$onecikan</a>
+								<a class='w3-btn w3-teal' href='".site_url('/admin/yazilar_duzenle/'.$yazi['yazi_id'])."' class='btn btn-primary' title='Yazıyı Güncelle'><i class='fa fa-edit'></i></a>
+								<a onclick=\"return confirm('Silmek İstediğinize Emin Misiniz?')\" class='w3-btn w3-red' href='".site_url('/admin/yazilar_sil/'.$yazi['yazi_id'])."' class='btn btn-danger' title='Yazıyı Sil'><i class='fa fa-trash'></i></a>
+								<a class='w3-btn w3-$style' href='".site_url('/admin/yazilar_onecikar/'.$yazi['yazi_id'])."' title='Öne Çıkarma İşlemi'>$onecikan</a>
 							</td>
 						</tr>";
 				}

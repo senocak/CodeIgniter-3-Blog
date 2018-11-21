@@ -4,10 +4,11 @@
                     <img src="<?php echo base_url(); ?>assets/images/bg.gif" style="width:100%">
                         <div class="w3-container w3-white">
                             <h4><b>Anıl Şenocak</b></h4>
-                            <p>Playing Guitar<br>
-                            Reading Books<br>
-                            Riding Motorcycle<br>
-                            Traveling (Austria, Slovenia, Hungary, Italy, Croatia, Bosnia and Herzegovina, Netherlands)<br>
+                            <p>Playing Guitar <i class="fa fa-music"></i><br>
+                            Reading Books <i class="fa fa-book-dead"></i><br>
+                            Riding Motorcycle <i class="fa fa-motorcycle"></i><br>
+                            Traveling <i class="fa fa-plane-departure"></i><br>
+                            (Austria, Slovenia, Hungary, Italy, Croatia, Bosnia and Herzegovina, Netherlands)<br>
                             </p>
                         </div>
                     </div>

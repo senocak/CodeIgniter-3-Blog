@@ -11,7 +11,7 @@
 				</div>
 				<div class="w3-container w3-white">
 					<?php if($post["yazi_onecikan"]=="1"){ ?>
-						<p style="float:right"><img alt="Sabit Yazı" src="https://cdn0.iconfinder.com/data/icons/typicons-2/24/pin-512.png" width="20px"></a>
+						<p style="float:right"><i class="fa fa-thumbtack"></i></a>
 					<?php } ?>
 					<p><b><?php echo $post['yazi_baslik']; ?></b></p>
 					<p style="text-align: justify;"><?php echo word_limiter(strip_tags($post["yazi_icerik"]),10);?><br>
