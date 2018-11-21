@@ -17,10 +17,10 @@
 			$data['yorumlar'] = $this->yazilar_model->get_yorumlar();
 			$this->load->view('yazilar/index', $data);
 		}
-		public function view($slug = NULL){
+		public function yazi($slug = NULL){
 			$data['post'] = $this->yazilar_model->get_posts($slug);
 			$post_id = $data['post']['yazi_id'];
-			$data['comments'] = $this->comment_model->get_comments($post_id);
+			$data['comments'] = $this->yazilar_model->get_comments($post_id);
 			$data['kategoriler'] = $this->yazilar_model->get_categories();
 			$data['yorumlar'] = $this->yazilar_model->get_yorumlar();
 			if(empty($data['post'])){

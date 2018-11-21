@@ -1,8 +1,8 @@
                 </div>
                 <div class="w3-col l4">
-                    <div class="w3-card w3-margin w3-margin-top">
+                    <div class="w3-card-4 w3-margin w3-margin-top">
                     <img src="<?php echo base_url(); ?>assets/images/bg.gif" style="width:100%">
-                        <div class="w3-container w3-white">
+                        <div class="w3-container w3-input w3-card-4 w3-light-grey">
                             <h4><b>Anıl Şenocak</b></h4>
                             <p>Playing Guitar <i class="fa fa-music"></i><br>
                             Reading Books <i class="fa fa-book-dead"></i><br>
@@ -13,9 +13,9 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="w3-card w3-margin">
+                    <div class="w3-card-4 w3-margin">
                         <div class="w3-container w3-padding"><h4>Kategoriler</h4></div>
-                        <ul class="w3-ul w3-hoverable w3-white">
+                        <ul class="w3-ul w3-hoverable w3-input w3-card-4 w3-light-grey">
                             <?php 
                             foreach ($kategoriler as $kategori) {
                                 echo "<a href='".site_url('/kategori/'.$kategori['kategori_url'])."'><li class='w3-padding-16 w3-hide-medium w3-hide-small'>
@@ -27,9 +27,9 @@
                         </ul>
                     </div>
                     <hr> 
-                    <div class="w3-card w3-margin">
+                    <div class="w3-card-4 w3-margin">
                         <div class="w3-container w3-padding"><h4>Yorumlar</h4></div>
-                        <ul class="w3-ul w3-hoverable w3-white">
+                        <ul class="w3-ul w3-hoverable w3-input w3-card-4 w3-light-grey">
                             <?php  
                             foreach ($yorumlar as $yorum) {
                                 echo "<li class='w3-padding-16 w3-hide-medium w3-hide-small'>
@@ -45,7 +45,7 @@
                 </div>
             </div><br>
         </div>
-        <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+        <footer class="w3-container w3-card-4 w3-dark-grey w3-padding-32 w3-margin-top">
             <p>Anıl Şenocak | <?php echo date("Y");?></p>
         </footer>
     </body>

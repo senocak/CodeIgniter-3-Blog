@@ -1,6 +1,6 @@
 <?php
-	class Pages extends CI_Controller{
-		public function view($page = 'anasayfa'){
+	class Sayfa extends CI_Controller{
+		public function index($page = 'anasayfa'){
 			if(!file_exists(APPPATH."views/sayfalar/$page.php")){
 				show_404();
 			}

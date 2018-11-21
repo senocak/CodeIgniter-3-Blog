@@ -1,4 +1,4 @@
-<?php $this->view('templates/header'); ?>
+<?php $this->view('iskelet/header'); ?>
 	<div class="w3-row-padding">
 		<?php foreach($posts as $post) : ?>
 			<div class="w3-third w3-container">
@@ -29,4 +29,4 @@
 	<div class="w3-container">
 		<?php echo $this->pagination->create_links(); ?>
 	</div>
-<?php $this->view('templates/footer'); ?>
+<?php $this->view('iskelet/footer'); ?>

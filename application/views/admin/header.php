@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/w3.css">
-        <link href="<?php echo base_url(); ?>assets/css/select2.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/select2.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/prism.css">  
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -14,7 +14,7 @@
 		<script src="<?php echo base_url(); ?>assets/js/prism.js"></script>
 	    <script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/select2.min.js"></script>
-		 <style type="text/css">.sortable { cursor: move; }</style>
+        <style type="text/css">.sortable { cursor: move; }</style>
         <script type="text/javascript">
             function showimagepreview(input) {
                 if (input.files && input.files[0]) {

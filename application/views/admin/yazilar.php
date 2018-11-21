@@ -38,9 +38,6 @@
 			?>
 		</tbody>
 	</table>
-	
-	
-
 	<script type="text/javascript"> 
 		$(function() {
 			$( "#sortable" ).sortable({

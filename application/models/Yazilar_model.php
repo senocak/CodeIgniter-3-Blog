@@ -54,4 +54,8 @@
 			$query = $this->db->get_where('kategoriler', array('kategori_url' => $kategori_ismi));
 			return $query->result_array();
 		}
+		public function get_comments($post_id){
+			$query = $this->db->get_where('yorumlar', array('yazi_id' => $post_id,'yorum_aktif'=>'1'));
+			return $query->result_array();
+		}
 	}

@@ -44,7 +44,7 @@
 					$this->session->set_flashdata('mesaj', 'Şifreler Eşleşmiyor'); 
 				}else{
 					$this->admin_model->profil($this->session->userdata('email'));
-					$this->session->set_flashdata('mesaj', 'Profil Güncellendi');
+					$this->session->set_flashdata('mesaj', 'Profil Güncellendi. Bir Sonraki Girişinizde Değişiklikleri Göreceksiniz');
 				}
 			}
 			$this->load->view('admin/profil', $data);

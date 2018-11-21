@@ -1,15 +1,5 @@
 <?php $this->view('admin/header'); ?>
-	<br>
-
-	
-
-                <style>
-                .tag label label-info{
-                    color:blue;
-                }
-                </style>
-
-
+	<br> 
 	<?php echo validation_errors(); ?>
 	<?php echo form_open('admin/yazilar_ekle'); ?>
 		<?php echo form_input(array("name"=>"yazi_baslik","class"=>"w3-input","required"=>"","autofocus"=>"","placeholder"=>"Yazı Başlığı")); ?>
@@ -23,5 +13,4 @@
 		</select> 
 		<?php echo form_submit(array("class"=>"w3-button w3-block w3-green","value"=>"Ekle")); ?>
 	<?php echo form_close(); ?>
-
 <?php $this->view('admin/footer'); ?>
