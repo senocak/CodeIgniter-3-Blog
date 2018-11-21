@@ -30,7 +30,6 @@
 			$this->load->view('yazilar/view', $data);
 		}
 		public function kategoriler($kategori_ismi,$offset = 0){
-
 			// Pagination Config
 			$this->db->join('kategoriler', 'kategoriler.kategori_id = yazilar.kategori_id');
 			$this->db->where('kategori_url',$kategori_ismi);	
@@ -54,6 +53,5 @@
 			}else{
 				redirect("yazilar");
 			}
-
 		}
 	}

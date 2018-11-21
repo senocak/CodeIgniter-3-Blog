@@ -20,13 +20,17 @@
 		<div class="w3-container w3-margin-bottom">
 			<?php foreach ($comments as $comment): ?>
 				<div class="w3-container w3-white">
-					<h5><?php echo $comment['yorum_yorum']; ?> [by <strong><?php echo $comment['yorum_isim']; ?></strong>]</h5>
+					<h5 id="yorum_<?php echo $comment['yorum_id']; ?>"><?php echo $comment['yorum_yorum']; ?> [by <strong><?php echo $comment['yorum_isim']; ?></strong>]</h5>
 				</div>
 				<br><br>
 			<?php endforeach; ?>
 		</div>
 	<?php else : ?>
-		Yorum Yok
+		<div class="w3-container w3-margin-bottom ">
+			<div class="w3-container w3-white w3-center">
+				Yorum Yok
+			</div>
+		</div>
 	<?php endif; ?><hr>
 	<?php echo validation_errors(); ?> 
 		<div class="w3-container w3-margin-bottom">

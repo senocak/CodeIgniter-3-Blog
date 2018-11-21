@@ -32,7 +32,7 @@
                             <?php  
                             foreach ($yorumlar as $yorum) {
                                 echo "<li class='w3-padding-16 w3-hide-medium w3-hide-small'>
-                                        <a href='".site_url('/yazi/'.$yorum['yazi_url'])."'>
+                                        <a href='".site_url('/yazi/'.$yorum['yazi_url'])."#yorum_".$yorum['yorum_id']."'>
                                             <span class='w3-large'>".$yorum['yorum_isim']."</span><br>
                                         </a>
                                         <span class='w3-large'>".date("d.m.Y",strtotime($yorum['yorum_created_at']))."</span>
