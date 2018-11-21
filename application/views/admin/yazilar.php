@@ -17,10 +17,10 @@
 					$style="";
 					if($yazi["yazi_onecikan"]=="0"){
 						$onecikan="Öne Çıkar";
-						$style="dark-gray";
+						$style="green";
 					}else{
 						$onecikan="Sıfırla";
-						$style="gray";
+						$style="khaki";
 					}
 					echo "<tr id='".$yazi['yazi_id']."'>
 							<th class='sortable'>$i</th>
@@ -30,14 +30,17 @@
 							<td>$etiketler</td>
 							<td>
 								<a class='w3-btn w3-teal' href='".site_url('/admin/yazilar_duzenle/'.$yazi['yazi_id'])."' class='btn btn-primary'>Düzenle</a>
-								<a class='w3-btn w3-red' href='".site_url('/admin/yazilar_sil/'.$yazi['yazi_id'])."' class='btn btn-danger'>Sil</a>
+								<a onclick=\"return confirm('Silmek İstediğinize Emin Misiniz?')\" class='w3-btn w3-red' href='".site_url('/admin/yazilar_sil/'.$yazi['yazi_id'])."' class='btn btn-danger'>Sil</a>
 								<a class='w3-btn w3-$style' href='".site_url('/admin/yazilar_onecikar/'.$yazi['yazi_id'])."'>$onecikan</a>
 							</td>
 						</tr>";
 				}
 			?>
 		</tbody>
-	</table> 
+	</table>
+	
+	
+
 	<script type="text/javascript"> 
 		$(function() {
 			$( "#sortable" ).sortable({
@@ -52,8 +55,7 @@
 									'sirala': $( "#sortable" ).sortable('toArray'),
 								},
 						url: '<?php echo site_url('/admin/yazilar_sirala'); ?>'
-					});	
-					
+					});
 					location.reload();
 				}
 			});
