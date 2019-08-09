@@ -1,7 +1,9 @@
-<?php $this->view('admin/header'); ?>
+<?php $this->view('iskelet/header'); ?>	 
+<?php $this->view('iskelet/admin_navbar'); ?>  
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 	<style type="text/css">.sortable { cursor: move; }</style>
-	<a href="<?php echo site_url('/admin/yazilar_ekle'); ?>" class="w3-button w3-block w3-blue">Ekle</a>
-	<table class="w3-table-all  w3-card-4">
+	<a href="<?php echo site_url('/admin/yazilar_ekle'); ?>" class="btn btn-success btn-block btn-lg ">Ekle</a>
+	<table class="table table-dark">
 		<thead><tr><th scope="col">#</th><th scope="col">Başlık</th><th scope="col">Tarih</th><th scope="col">Kategori</th><th scope="col">Etiketler</th><th scope="col">İşlemler</th></tr></thead>
 		<tbody id="sortable">
 			<?php 
@@ -10,17 +12,19 @@
 					$i++;
 					$etiketler="";
 					$dizi = explode (",",$yazi["yazi_etiketler"]);
-					for($etiketler_i=0;$etiketler_i<count($dizi);$etiketler_i++){
-						$etiketler=$etiketler."<span class='w3-tag'>$dizi[$etiketler_i]</span> ";
+					if ($yazi["yazi_etiketler"]) { 
+						for($etiketler_i=0;$etiketler_i<count($dizi);$etiketler_i++){
+							$etiketler=$etiketler."<span class='etiket'>$dizi[$etiketler_i]</span> ";
+						}
 					}
 					$onecikan="";
 					$style="";
 					if($yazi["yazi_onecikan"]=="0"){
-						$onecikan="<i class='fa fa-plus'></i>";
-						$style="green";
+						$onecikan="<i style='color:black;' class='fa fa-plus'></i>";
+						$style="primary";
 					}else{
-						$onecikan="<i class='fa fa-minus'></i>";
-						$style="khaki";
+						$onecikan="<i style='color:black;' class='fa fa-minus'></i>";
+						$style="warning";
 					}
 					echo "<tr id='".$yazi['yazi_id']."'>
 							<th class='sortable'>$i</th>
@@ -29,9 +33,9 @@
 							<td>".$yazi['kategori_baslik']."</td>
 							<td>$etiketler</td>
 							<td>
-								<a class='w3-btn w3-teal' href='".site_url('/admin/yazilar_duzenle/'.$yazi['yazi_id'])."' class='btn btn-primary' title='Yazıyı Güncelle'><i class='fa fa-edit'></i></a>
-								<a onclick=\"return confirm('Silmek İstediğinize Emin Misiniz?')\" class='w3-btn w3-red' href='".site_url('/admin/yazilar_sil/'.$yazi['yazi_id'])."' class='btn btn-danger' title='Yazıyı Sil'><i class='fa fa-trash'></i></a>
-								<a class='w3-btn w3-$style' href='".site_url('/admin/yazilar_onecikar/'.$yazi['yazi_id'])."' title='Öne Çıkarma İşlemi'>$onecikan</a>
+								<button class='btn btn-xs btn-success'><a class='w3-btn w3-teal' href='".site_url('/admin/yazilar_duzenle/'.$yazi['yazi_id'])."'><i style='color:black;' class='fa fa-edit'></i></a></button>
+								<button class='btn btn-xs btn-danger'><a onclick=\"return confirm('Silmek İstediğinize Emin Misiniz?')\" href='".site_url('/admin/yazilar_sil/'.$yazi['yazi_id'])."'><i style='color:black;' class='fa fa-trash'></i></a></button>
+								<button class='btn btn-xs btn-$style'><a href='".site_url('/admin/yazilar_onecikar/'.$yazi['yazi_id'])."'>$onecikan</a></button>
 							</td>
 						</tr>";
 				}
@@ -58,5 +62,5 @@
 			});
 			$( "#sortable" ).disableSelection();	                      		
 		});	                      	
-	</script>
-<?php $this->view('admin/footer'); ?>
+	</script> 
+<?php $this->view('iskelet/footer'); ?>

@@ -1,12 +1,13 @@
 <?php
 	class Admin extends CI_Controller{
-		public function login(){
-			$data=array();
+		private $data=array();
+		public function login(){ 
 			$this->form_validation->set_rules('email', 'Email', 'required');
 			$this->form_validation->set_rules('password', 'Şifre', 'required');
 			if($this->form_validation->run() === FALSE){
 				if(!$this->session->userdata('logged_in')){
-					$this->load->view('admin/login', $data);
+					$this->data['kategoriler'] = $this->yazilar_model->get_categories();
+					$this->load->view('admin/login', $this->data);
 				}else{
 					redirect('admin/yazilar');
 				}
@@ -34,7 +35,6 @@
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
 			}
-			$data=array();
 			$this->form_validation->set_rules('email', 'Kullanıcı Email', 'required');
 			$this->form_validation->set_rules('name', 'Kullanıcı İsmi', 'required');
 			if($this->form_validation->run() === TRUE){
@@ -47,26 +47,29 @@
 					$this->session->set_flashdata('mesaj', 'Profil Güncellendi. Bir Sonraki Girişinizde Değişiklikleri Göreceksiniz');
 				}
 			}
-			$this->load->view('admin/profil', $data);
+			$this->data['kategoriler'] = $this->yazilar_model->get_categories();
+			$this->load->view('admin/profil', $this->data);
 		}
 		public function yazilar(){
-			$data=array('title'=>"Yazılar");
+			$this->data['title']="Yazılar";
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
 			}else{
-				$data['yazilar'] = $this->admin_model->get_yazilar();
-				$this->load->view('admin/yazilar', $data);
+				$this->data['yazilar'] = $this->admin_model->get_yazilar();
+				$this->data['kategoriler'] = $this->yazilar_model->get_categories();
+				$this->load->view('admin/yazilar', $this->data);
 			}		
 		}
 		public function yazilar_ekle(){
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
 			}
-			$data['kategoriler'] = $this->admin_model->get_kategoriler();
+			$this->data['kategoriler'] = $this->admin_model->get_kategoriler();
 			$this->form_validation->set_rules('yazi_baslik', 'Başlık', 'required');
 			$this->form_validation->set_rules('yazi_icerik', 'İçerik', 'required');
 			if($this->form_validation->run() === FALSE){
-				$this->load->view('admin/yazilar_ekle', $data);
+				$this->data['kategoriler'] = $this->yazilar_model->get_categories();
+				$this->load->view('admin/yazilar_ekle', $this->data);
 			} else {
 				$this->admin_model->yazilar_ekle();
 				$this->session->set_flashdata('mesaj', 'Yazı Oluşturuldu');
@@ -86,12 +89,13 @@
 				redirect('admin/login');
 			}
 			$slug = $this->db->get_where('yazilar', array('yazi_id' => $id))->row()->yazi_url;
-			$data['post'] = $this->admin_model->get_yazilar($slug);
-			$data['categories'] = $this->admin_model->get_kategoriler();
-			if(empty($data['post'])){
+			$this->data['post'] = $this->admin_model->get_yazilar($slug);
+			$this->data['categories'] = $this->admin_model->get_kategoriler();
+			if(empty($this->data['post'])){
 				show_404();
 			}
-			$this->load->view('admin/yazilar_duzenle', $data);
+			$this->data['kategoriler'] = $this->yazilar_model->get_categories();
+			$this->load->view('admin/yazilar_duzenle', $this->data);
 		}
 		public function yazilar_guncelle_post(){
 			if(!$this->session->userdata('logged_in')){
@@ -119,10 +123,10 @@
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
 			}
-			$data['kategoriler'] = $this->admin_model->get_kategoriler();
+			$this->data['kategoriler'] = $this->admin_model->get_kategoriler();
 			$this->form_validation->set_rules('kategori_baslik', 'Kategori Başlık', 'required');
 			if($this->form_validation->run() === FALSE){
-				$this->load->view('admin/kategoriler', $data);
+				$this->load->view('admin/kategoriler', $this->data);
 			}else{
 				$config['upload_path'] = './assets/images/kategoriler';
 				$config['allowed_types'] = 'gif|jpg|png';
@@ -131,10 +135,10 @@
 				$config['max_height'] = '4000';
 				$this->load->library('upload', $config);
 				if(!$this->upload->do_upload()){
-					$errors = array('error' => $this->upload->display_errors());
+					$this->data["error"] = $this->upload->display_errors();
 					$post_image = 'no-image.png';
 				}else{
-					$data = array('upload_data' => $this->upload->data());
+					$this->data = array('upload_data' => $this->upload->data());
 					$post_image = $_FILES['userfile']['name'];
 				}
 				$this->admin_model->kategori_ekle($post_image);
@@ -146,11 +150,11 @@
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
 			}
-			$data['kategoriler'] = $this->admin_model->get_kategoriler();
-			$data['kategori'] = $this->admin_model->get_kategoriler($id);
+			$this->data['kategoriler'] = $this->admin_model->get_kategoriler();
+			$this->data['kategori'] = $this->admin_model->get_kategoriler($id);
 			$this->form_validation->set_rules('kategori_baslik', 'Kategori İsmi', 'required');
 			if($this->form_validation->run() === FALSE){
-				$this->load->view('admin/kategoriler_duzenle', $data);
+				$this->load->view('admin/kategoriler_duzenle', $this->data);
 			}else{
 				if($_FILES['userfile']["name"]!=""){
 					$config['upload_path'] = './assets/images/kategoriler';
@@ -160,10 +164,10 @@
 					$config['max_height'] = '4000';
 					$this->load->library('upload', $config);
 					if(!$this->upload->do_upload()){
-						$errors = array('error' => $this->upload->display_errors());
+						$this->data["error"] = $this->upload->display_errors();
 						$post_image = 'no-image.png';
 					}else{
-						$data = array('upload_data' => $this->upload->data());
+						$this->data = array('upload_data' => $this->upload->data());
 						$post_image = $_FILES['userfile']['name'];
 					}
 					$this->admin_model->kategoriler_duzenle($post_image);
@@ -185,12 +189,13 @@
 			redirect('admin/kategoriler');
 		}
 		public function yorumlar(){
-			$data=array('title'=>"Yorumlar");
+			$this->data['title']="Yorumlar";
 			if(!$this->session->userdata('logged_in')){
 				redirect('admin/login');
 			}else{
-				$data['yorumlar'] = $this->admin_model->get_yorumlar();
-				$this->load->view('admin/yorumlar', $data);
+				$this->data['yorumlar'] = $this->admin_model->get_yorumlar();
+				$this->data['kategoriler'] = $this->yazilar_model->get_categories();
+				$this->load->view('admin/yorumlar', $this->data);
 			}		
 		} 
 		public function yorumlar_aktif($yorum_id){
