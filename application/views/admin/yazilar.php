@@ -1,6 +1,6 @@
 <?php $this->view('admin/header'); ?>
 	<style type="text/css">.sortable { cursor: move; }</style>
-	<a href="<?php echo site_url('/admin/yazilar_ekle'); ?>" class="w3-button w3-block w3-dark-grey">Ekle</a>
+	<a href="<?php echo site_url('/admin/yazilar_ekle'); ?>" class="w3-button w3-block w3-blue">Ekle</a>
 	<table class="w3-table-all  w3-card-4">
 		<thead><tr><th scope="col">#</th><th scope="col">Başlık</th><th scope="col">Tarih</th><th scope="col">Kategori</th><th scope="col">Etiketler</th><th scope="col">İşlemler</th></tr></thead>
 		<tbody id="sortable">

@@ -31,7 +31,7 @@
             <div class="w3-top">
                 <div class="w3-bar w3-black w3-card">
                     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-                    <a href="<?php echo base_url(); ?>" class="w3-bar-item w3-button w3-padding-large">Anasayfa</a>
+                    <a href="<?php echo base_url(); ?>admin" class="w3-bar-item w3-button w3-padding-large">Anasayfa</a>
                     <div class="w3-dropdown-hover w3-hide-small">
                         <button class="w3-padding-large w3-button">Yazılar <i class="fa fa-caret-down"></i></button>     
                         <div class="w3-dropdown-content w3-bar-block w3-card-4">
@@ -53,6 +53,6 @@
 	        <br><br>
             <?php 
                 if($this->session->flashdata('mesaj')){
-                    echo '<div class="w3-panel w3-red"><h3>Dikkat!</h3><p>'.$this->session->flashdata('mesaj').'</p></div>';
+                    echo "<div class='w3-panel w3-dark-grey w3-display-container'><h3>Dikkat!</h3><span onclick='this.parentElement.style.display=\"none\"' class='w3-button w3-red w3-display-topright' style='color:black;'>x</span><p>".$this->session->flashdata('mesaj')."</p></div> ";
                 }
             ?>

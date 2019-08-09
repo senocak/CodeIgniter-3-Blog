@@ -8,7 +8,7 @@
 				if(!$this->session->userdata('logged_in')){
 					$this->load->view('admin/login', $data);
 				}else{
-					redirect('admin/profil');
+					redirect('admin/yazilar');
 				}
 			} else {
 				$email = $this->input->post('email');

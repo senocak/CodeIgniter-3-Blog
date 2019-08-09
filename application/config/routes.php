@@ -5,6 +5,7 @@ $route['yazilar'] = 'yazilar/index';
 $route['yazi/(:any)'] = 'yazilar/yazi/$1';
 $route['kategori/(:any)'] = 'yazilar/kategoriler/$1';
 $route['kategori/(:any)/(:num)'] = 'yazilar/kategoriler/$1/$2';
+$route['admin'] = 'admin/login';
 
 $route['default_controller'] = 'sayfa/index';
 $route['(:any)'] = 'sayfa/index/$1';
