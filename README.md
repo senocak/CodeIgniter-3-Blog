@@ -15,4 +15,4 @@ visit $config['base_url'] in your browser
 
 > To understand the ckeditor and ckfinder implementation, please check [here](https://github.com/senocak/Laravel-CKEDITOR-CKFINDER-usage)
 
-> Frontend Template is [here]((https://www.w3schools.com/w3css/)
+> Frontend Template is [here](https://www.w3schools.com/w3css/)
