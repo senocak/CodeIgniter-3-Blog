@@ -1,4 +1,4 @@
-# [![N|Solid](https://hcuren.files.wordpress.com/2018/11/ci.png)](https://laravel.com/) Codeigniter
+# [![N|Solid](https://hcuren.files.wordpress.com/2018/11/ci.png)](https://laravel.com/)
 
 ### To run the project
 
