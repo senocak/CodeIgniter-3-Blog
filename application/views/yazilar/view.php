@@ -60,8 +60,9 @@
                         <span class="categories " style="font-size: 15px;">
                             » <a href="<?php echo site_url(); ?>kategori/<?php echo $post['kategori_url']; ?>"><button class="btn btn-success btn-xs"><?php echo $post['kategori_baslik']; ?></button></a> 
                             » <?php echo $this->yazilar_model->get_yorumlar_toplam($post["yazi_id"]); ?> Yorum
-                            » <?php 
+                            <?php 
                                 if ($post["yazi_etiketler"]) { 
+                                    echo "» ";
                                     $dizi = explode (",",$post["yazi_etiketler"]);
                                     foreach(explode(',', $post["yazi_etiketler"]) as $etiket){
                                         echo "<span class='etiket'>$etiket</span> ";

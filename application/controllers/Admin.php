@@ -23,7 +23,7 @@
 					);
 					$this->session->set_userdata($user_data);
 					$this->session->set_flashdata('mesaj', 'Başarılı ile giriş yapıldı');
-					redirect('admin/profil');
+					redirect('admin/yazilar');
 				} else {
 					$this->session->set_flashdata('mesaj', 'Giriş Başarısız');
 					redirect('admin/login');
