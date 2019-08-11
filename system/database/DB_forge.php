@@ -894,6 +894,7 @@ abstract class CI_DB_forge {
 			return;
 		}
 
+		/*
 		if (array_key_exists('DEFAULT', $attributes))
 		{
 			if ($attributes['DEFAULT'] === NULL)
@@ -903,6 +904,28 @@ abstract class CI_DB_forge {
 				// Override the NULL attribute if that's our default
 				$attributes['NULL'] = TRUE;
 				$field['null'] = empty($this->_null) ? '' : ' '.$this->_null;
+			}
+			else
+			{
+				$field['default'] = $this->_default.$this->db->escape($attributes['DEFAULT']);
+			}
+		}
+		
+		
+		*/
+
+		if (array_key_exists('DEFAULT', $attributes))
+		{
+			if ($attributes['DEFAULT'] === NULL)
+			{
+				$field['default'] = empty($this->_null) ? '' : $this->_default.$this->_null;
+
+				// Override the NULL attribute if that's our default
+				$attributes['NULL'] = TRUE;
+				$field['null'] = empty($this->_null) ? '' : ' '.$this->_null;
+			}elseif ($attributes['DEFAULT_STRING'] === false)
+			{
+				$field['default'] = $this->_default.$attributes['DEFAULT'];
 			}
 			else
 			{
